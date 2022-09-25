@@ -3,19 +3,20 @@ name: build
 on:
   push:
     branches:
-      - '*'
+      - 'main'
     pull_requests:
-      - '*'
+      - 'main'
 
 env:
   HVCC_VERSION: ffe3093c6eac5b7f7690dfedeed35f305d994224
 
+
 jobs:
-  linux-x86_64:
+  build:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Set up Python
@@ -37,4 +38,27 @@ jobs:
           python -m pip install git+https://github.com/Wasted-Audio/hvcc.git@${{ env.HVCC_VERSION }}
       - name: Build plugins
         run: |
-          make -j $(nproc)
+            make -j $(nproc)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1.0.4
+
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
