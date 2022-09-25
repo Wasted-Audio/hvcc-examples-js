@@ -1,0 +1,93 @@
+#N canvas 2318 143 958 861 12;
+#X obj 524 57 hsl 128 15 0 1 0 0 empty empty Noise_Attack -2 -8 0 10
+-262144 -1 -1 3100 1;
+#X obj 526 183 hsl 128 15 0 1 0 0 empty empty Noise_Decay -2 -8 0 10
+-262144 -1 -1 7800 1;
+#X obj 228 59 hsl 128 15 0 1 0 0 empty empty Noise_Sweep_Freq -2 -8
+0 10 -262144 -1 -1 8500 1;
+#X obj 184 389 hsl 128 15 0 1 0 0 empty empty Osc_Attack -2 -8 0 10
+-262144 -1 -1 9500 1;
+#X obj 184 491 hsl 128 15 0 1 0 0 empty empty Osc_Decay -2 -8 0 10
+-262144 -1 -1 10700 1;
+#X obj 177 678 hsl 128 15 0 1 0 0 empty empty Osc_Amount -2 -8 0 10
+-262144 -1 -1 12700 1;
+#X obj 178 590 hsl 128 15 0 1 0 0 empty empty Osc_Freq -2 -8 0 10 -262144
+-1 -1 2000 1;
+#X obj 225 182 hsl 128 15 0 1 0 0 empty empty Noise_Amount -2 -8 0
+10 -262144 -1 -1 10200 1;
+#X obj 500 336 hsl 128 15 0 1 0 0 empty empty Bitcrush_Amount -2 -8
+0 10 -262144 -1 -1 9600 1;
+#X obj 494 440 hsl 128 15 0 1 0 0 empty empty Flanger_Feedback -2 -8
+0 10 -262144 -1 -1 8700 1;
+#X obj 504 649 hsl 128 15 0 1 0 0 empty empty Flanger_Depth -2 -8 0
+10 -262144 -1 -1 6800 1;
+#X obj 490 555 hsl 128 15 0 1 0 0 empty empty Flanger_Speed -2 -8 0
+10 -262144 -1 -1 11400 1;
+#X obj 497 302 r bitcrush @hv_param 0 1 0.92;
+#X obj 28 50 t b;
+#X obj 47 395 dac~;
+#X obj 224 24 r noise_sweep @hv_param 0 1 0.36;
+#X obj 222 146 r noise_amount @hv_param 0 1 0.54;
+#X obj 181 354 r osc_attack @hv_param 0 1 0;
+#X obj 181 454 r osc_decay @hv_param 0 1 0.66;
+#X obj 175 552 r osc_freq @hv_param 0 1 0.3;
+#X obj 174 643 r osc_amount @hv_param 0 1 0.8;
+#X obj 501 613 r flanger_depth @hv_param 0 1 1;
+#X obj 487 518 r flanger_speed @hv_param 0 1 0.61;
+#X obj 490 401 r flanger_fb @hv_param 0 1 0.94;
+#X obj 523 146 r noise_decay @hv_param 0 1 0.56;
+#X obj 522 18 r noise_attack @hv_param 0 1 0.17;
+#X obj 28 28 r trigger @hv_event;
+#X msg 225 79 Noise-Sweep-Freq \$1;
+#X msg 222 203 Noise-Amount \$1;
+#X msg 521 82 Noise-Atack \$1;
+#X msg 523 206 Noise-Decay \$1;
+#X msg 181 411 Osc-Attack \$1;
+#X msg 181 511 Osc-Decay \$1;
+#X msg 175 609 Osc-Freq \$1;
+#X msg 174 701 Osc-Amount \$1;
+#X msg 497 360 Bitcrush-Amount \$1;
+#X msg 491 461 Flanger-Feedback \$1;
+#X msg 487 577 Flanger-Speed \$1;
+#X msg 501 671 Flanger-Depth \$1;
+#X obj 50 360 examples/chip;
+#X connect 0 0 29 0;
+#X connect 1 0 30 0;
+#X connect 2 0 27 0;
+#X connect 3 0 31 0;
+#X connect 4 0 32 0;
+#X connect 5 0 34 0;
+#X connect 6 0 33 0;
+#X connect 7 0 28 0;
+#X connect 8 0 35 0;
+#X connect 9 0 36 0;
+#X connect 10 0 38 0;
+#X connect 11 0 37 0;
+#X connect 12 0 8 0;
+#X connect 13 0 39 0;
+#X connect 15 0 2 0;
+#X connect 16 0 7 0;
+#X connect 17 0 3 0;
+#X connect 18 0 4 0;
+#X connect 19 0 6 0;
+#X connect 20 0 5 0;
+#X connect 21 0 10 0;
+#X connect 22 0 11 0;
+#X connect 23 0 9 0;
+#X connect 24 0 1 0;
+#X connect 25 0 0 0;
+#X connect 26 0 13 0;
+#X connect 27 0 39 1;
+#X connect 28 0 39 1;
+#X connect 29 0 39 1;
+#X connect 30 0 39 1;
+#X connect 31 0 39 1;
+#X connect 32 0 39 1;
+#X connect 33 0 39 1;
+#X connect 34 0 39 1;
+#X connect 35 0 39 1;
+#X connect 36 0 39 1;
+#X connect 37 0 39 1;
+#X connect 38 0 39 1;
+#X connect 39 0 14 0;
+#X connect 39 0 14 1;
