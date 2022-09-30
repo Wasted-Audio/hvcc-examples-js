@@ -8,7 +8,7 @@ on:
       - 'main'
 
 env:
-  HVCC_VERSION: ffe3093c6eac5b7f7690dfedeed35f305d994224
+  HVCC_VERSION: a7f94f56a0b0cba75c1edcce3ce92937ade069cc
 
 
 jobs:
