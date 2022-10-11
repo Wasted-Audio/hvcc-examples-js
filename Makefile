@@ -1,6 +1,6 @@
 all: hvcc html
 
-PLUGINS = chip
+PLUGINS = chip krell
 
 html: hvcc
 	$(foreach var, $(PLUGINS), mkdir _site/$(var))

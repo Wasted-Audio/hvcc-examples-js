@@ -1,0 +1,4 @@
+#N canvas 759 192 584 396 12;
+#X obj 94 62 r trigger @hv_event;
+#X obj 94 96 examples/krell;
+#X connect 0 0 1 0;
