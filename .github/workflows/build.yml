@@ -6,6 +6,8 @@ on:
       - 'main'
     pull_requests:
       - 'main'
+  repository_dispatch:
+    types: [nightly]
 
 env:
   HVCC_VERSION: 166c6aefc7b5936369c79c17ffc0b4d0d24c97c2
@@ -35,7 +37,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+
+      - name: Install pinned hvcc
+        run: |
           python -m pip install git+https://github.com/Wasted-Audio/hvcc.git@${{ env.HVCC_VERSION }}
+        if: ${{ !github.event.client_payload.nightly }}
+      - name: Install develop hvcc
+        run: |
+          python -m pip install git+https://github.com/Wasted-Audio/hvcc.git@${{ github.event.client_payload.branch }}
+        if: ${{ github.event.client_payload.nightly }}
+
       - name: Build plugins
         run: |
             make -j $(nproc)
