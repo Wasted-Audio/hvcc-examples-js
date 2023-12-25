@@ -10,7 +10,7 @@ on:
     types: [nightly]
 
 env:
-  HVCC_VERSION: 166c6aefc7b5936369c79c17ffc0b4d0d24c97c2
+  HVCC_VERSION: 04515d7a6be0fa2a9f54207d4a2a209d121c4b3f
 
 
 jobs:
@@ -26,10 +26,10 @@ jobs:
         with:
           python-version: 3.9
       - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v11
+        uses: mymindstorm/setup-emsdk@v13
         with:
           # Make sure to set a version number!
-          version: 3.1.23
+          version: 3.1.51
           # This is the name of the cache folder.
           # The cache folder will be placed in the build directory,
           #  so make sure it doesn't conflict with anything!
@@ -51,7 +51,7 @@ jobs:
         run: |
             make -j $(nproc)
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1.0.4
+        uses: actions/upload-pages-artifact@v3.0.0
 
   deploy:
     # Add a dependency to the build job
