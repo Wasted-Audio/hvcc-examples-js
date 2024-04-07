@@ -1,6 +1,8 @@
+SHELL:=/bin/bash
+
 all: hvcc html
 
-PLUGINS = chip krell
+PLUGINS = chip krell synth_simple
 
 html: hvcc
 	$(foreach var, $(PLUGINS), mkdir _site/$(var);)
