@@ -10,7 +10,7 @@ on:
     types: [nightly]
 
 env:
-  HVCC_VERSION: 04515d7a6be0fa2a9f54207d4a2a209d121c4b3f
+  HVCC_VERSION: 89446f737e2b8bc7794fbdd4de2dcce2cb43c874
 
 
 jobs:
