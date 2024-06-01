@@ -10,3 +10,6 @@ html: hvcc
 
 hvcc:
 	$(foreach var, $(PLUGINS), hvcc js_$(var).pd -n $(var) -o $(var) -g js -p examples examples/heavylib;)
+
+clean:
+	$(foreach var, $(PLUGINS), rm -rf _site/$(var);)
