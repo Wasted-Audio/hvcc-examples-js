@@ -2,10 +2,6 @@ name: build
 
 on:
   push:
-    branches:
-      - 'main'
-    pull_requests:
-      - 'main'
   repository_dispatch:
     types: [nightly]
 
@@ -18,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: 3.12
       - name: Setup emsdk
@@ -51,7 +47,7 @@ jobs:
         run: |
             make -j $(nproc)
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.0
+        uses: actions/upload-pages-artifact@v4
 
   deploy:
     # Add a dependency to the build job
