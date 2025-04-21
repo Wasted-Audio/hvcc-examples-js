@@ -2,34 +2,30 @@ name: build
 
 on:
   push:
-    branches:
-      - 'main'
-    pull_requests:
-      - 'main'
   repository_dispatch:
     types: [nightly]
 
 env:
-  HVCC_VERSION: 89446f737e2b8bc7794fbdd4de2dcce2cb43c874
+  HVCC_VERSION: b56a6422f48018dd4d9a9541f270ff29cb9efae3
 
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: 3.12
       - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v13
+        uses: mymindstorm/setup-emsdk@v14
         with:
           # Make sure to set a version number!
-          version: 3.1.51
+          version: 4.0.7
           # This is the name of the cache folder.
           # The cache folder will be placed in the build directory,
           #  so make sure it doesn't conflict with anything!
@@ -51,11 +47,13 @@ jobs:
         run: |
             make -j $(nproc)
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.0
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
 
   deploy:
     # Add a dependency to the build job
     needs: build
+    if: github.ref == 'refs/heads/main'
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
