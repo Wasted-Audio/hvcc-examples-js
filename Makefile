@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 
 all: hvcc html
 
-PLUGINS = chip krell synth_simple stereo_panner events envelope_follower
+PLUGINS = chip krell synth_simple stereo_panner envelope_follower
 
 html: hvcc
 	$(foreach var, $(PLUGINS), mkdir _site/$(var);)
