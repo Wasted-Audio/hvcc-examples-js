@@ -6,7 +6,8 @@ on:
     types: [nightly]
 
 env:
-  HVCC_VERSION: b56a6422f48018dd4d9a9541f270ff29cb9efae3
+  HVCC_VERSION: c43c6b9abb7cc6355c0327b891ed105bd01f5f43
+  GIT_LFS_SKIP_SMUDGE: 1
 
 
 jobs:
